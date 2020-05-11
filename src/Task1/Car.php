@@ -24,6 +24,11 @@ class Car
         float $fuelTankVolume
     )
     {
+        if ($speed < 0 || $pitStopTime < 0 || $fuelConsumption < 0 || $fuelTankVolume < 0){
+            new \Exception('Повинно бути більше 0');
+            die;
+        }
+
         $this->id = $id;
         $this->image = $image;
         $this->name = $name;

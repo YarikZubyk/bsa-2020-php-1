@@ -12,6 +12,11 @@ class Book
 
     public function __construct(string $title,int $price,int $pageNumber)
     {
+        if ($price < 0 || $pageNumber < 0){
+            new \Exception('Повинно бути більше 0');
+            die;
+        }
+
         $this->title = $title;
         $this->price = $price;
         $this->pageNumber = $pageNumber;

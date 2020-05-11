@@ -15,6 +15,11 @@ class Track
 
     public function __construct(float $lapLength, int $lapsNumber)
     {
+        if ($lapLength < 0 || $lapsNumber < 0 || $this->cars < 0){
+            new \Exception('Повинно бути більше 0');
+            die;
+        }
+
         $this->lapLength = $lapLength;
         $this->lapsNumber = $lapsNumber;
     }
