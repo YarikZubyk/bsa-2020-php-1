@@ -4,17 +4,26 @@ declare(strict_types=1);
 
 namespace App\Task2;
 
+use App\Task2\BooksGenerato;
+
 class Book
 {
     public $title;
     public $price;
     public $pageNumber;
 
-    public function __construct(string $title,int $price,int $pageNumber)
+    public function __construct(string $title, int $price, int $pageNumber)
     {
-        if ($price < 0 || $pageNumber < 0){
-            new \Exception('Повинно бути більше 0');
-            die;
+        try {
+            if ($price < 0) {
+                throw new Exception('Ціна не може бути менша за нуль!');
+            }
+            if ($pageNumber < 0) {
+                throw new Exception('Кількість сторінок не може бути менше за нуль!');
+            }
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->title = $title;

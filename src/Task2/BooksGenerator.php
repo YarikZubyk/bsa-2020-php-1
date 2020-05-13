@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Task2;
 
+use App\Task2\Book;
+
+
 class BooksGenerator
 {
     public $minPagesNumber;
@@ -13,9 +16,16 @@ class BooksGenerator
 
     public function __construct(int $minPagesNumber, array $libraryBooks, int $maxPrice, array $storeBooks)
     {
-        if ($minPagesNumber < 0 || $maxPrice < 0){
-            new \Exception('Повинно бути більше 0');
-            die;
+        try {
+            if ($minPagesNumber < 0) {
+                throw new Exception('Мінімальна кількість сторінок не може дорівнювати 0!');
+            }
+            if ($maxPrice < 0) {
+                throw new Exception('Максимальна ціна не може бути менша за нуль');
+            }
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->minPagesNumber = $minPagesNumber;
@@ -27,15 +37,16 @@ class BooksGenerator
 
     public function generate(): \Generator
     {
-        foreach ($this->libraryBooks as $libraryBook) {
-            if ($libraryBook->getPagesNumber() >= $this->minPagesNumber) {
-                yield $libraryBook;
+        foreach ($this->libraryBooks as $libraryBooks) {
+            if ($libraryBooks->getPagesNumber() >= $this->minPagesNumber) {
+                yield $libraryBooks;
             }
         }
-        foreach ($this->storeBooks as $storeBook) {
-            if ($storeBook->getPrice() <= $this->maxPrice) {
-                yield $storeBook;
+        foreach ($this->storeBooks as $storeBooks) {
+            if ($storeBooks->getPrice() <= $this->maxPrice) {
+                yield $storeBooks;
             }
         }
     }
 }
+

@@ -9,15 +9,27 @@ use phpDocumentor\Reflection\Types\This;
 
 class Track
 {
-    public float $lapLength;
-    public int $lapsNumber;
-    public array $cars;
+
+
+    const sec = 3600;
+    protected float $lapLength;
+    protected int $lapsNumber;
+    protected array $cars;
+
 
     public function __construct(float $lapLength, int $lapsNumber)
     {
-        if ($lapLength < 0 || $lapsNumber < 0 || $this->cars < 0){
-            new \Exception('Повинно бути більше 0');
-            die;
+
+        try {
+            if ($lapLength < 0) {
+                throw new Exception('Довжина коли мє бути більше за нуль!');
+            }
+            if ($lapsNumber < 0) {
+                throw new Exception('Кількість кругів має бути більша за нуль!');
+            }
+
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
 
         $this->lapLength = $lapLength;
@@ -39,9 +51,17 @@ class Track
         $this->cars[] = $car;
     }
 
+
     public function all(): array
     {
-        return $this->cars;
+        try {
+            return $this->all();
+            if ($this->all() < 0) {
+                throw new \Exception('bla bla bla');
+            }
+        }catch (\Exception $e){
+            echo $e-> getMessage();
+        }
     }
 
 
@@ -59,7 +79,6 @@ class Track
         return $this->all()[array_search(min($totalTime), $totalTime)];
     }
 
-
     /*
      * Повна довжина з урахуванням кіл
      */
@@ -75,13 +94,14 @@ class Track
     {
         return ($car->getFuelTankVolume() * 100) / $car->getFuelConsumption();
     }
+//    }
 
     /*
      * Потрібний час що проїхати всю трасу
      * */
     public function totalTime($car)
     {
-        return ($this->totalLength() / $car->getSpeed()) * 3600;
+        return ($this->totalLength() / $car->getSpeed()) * self::sec;
     }
 
 

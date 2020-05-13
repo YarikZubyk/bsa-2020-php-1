@@ -6,13 +6,13 @@ namespace App\Task1;
 
 class Car
 {
-    public int $id;
-    public string $image;
-    public string $name;
-    public int $speed;
-    public int $pitStopTime;
-    public float $fuelConsumption;
-    public float $fuelTankVolume;
+    private int $id;
+    private string $image;
+    private string $name;
+    private int $speed;
+    private int $pitStopTime;
+    private float $fuelConsumption;
+    private float $fuelTankVolume;
 
     public function __construct(
         int $id,
@@ -24,9 +24,23 @@ class Car
         float $fuelTankVolume
     )
     {
-        if ($speed < 0 || $pitStopTime < 0 || $fuelConsumption < 0 || $fuelTankVolume < 0){
-            new \Exception('Повинно бути більше 0');
-            die;
+        try {
+            if ($speed < 0){
+                throw new \Exception('Швидкість має бути більшою за 0');
+            }
+            if ($pitStopTime < 0){
+                throw new \Exception('ПітСтоп час має бути більше за нуль!');
+            }
+            if ($fuelConsumption < 0){
+                throw new \Exception('Витрати бензину має бути більша за нуль!');
+            }
+            if ($fuelTankVolume < 0){
+                throw new \Exception('Місткість баку не може бути рівна нулю - Машина не поїде!!!');
+            }
+
+        }
+        catch (\Exception $e){
+            echo $e->getMessage();
         }
 
         $this->id = $id;
@@ -37,6 +51,7 @@ class Car
         $this->fuelConsumption = $fuelConsumption;
         $this->fuelTankVolume = $fuelTankVolume;
     }
+
 
     public function getId(): int
     {
