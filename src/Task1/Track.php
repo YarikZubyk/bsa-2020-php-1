@@ -54,14 +54,7 @@ class Track
 
     public function all(): array
     {
-        try {
             return $this->all();
-            if ($this->all() < 0) {
-                throw new \Exception('bla bla bla');
-            }
-        }catch (\Exception $e){
-            echo $e-> getMessage();
-        }
     }
 
 
