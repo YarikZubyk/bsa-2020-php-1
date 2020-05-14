@@ -24,7 +24,7 @@ class Car
         float $fuelTankVolume
     )
     {
-        try {
+
             if ($speed < 0){
                 throw new \Exception('Швидкість має бути більшою за 0');
             }
@@ -37,11 +37,6 @@ class Car
             if ($fuelTankVolume < 0){
                 throw new \Exception('Місткість баку не може бути рівна нулю - Машина не поїде!!!');
             }
-
-        }
-        catch (\Exception $e){
-            echo $e->getMessage();
-        }
 
         $this->id = $id;
         $this->image = $image;

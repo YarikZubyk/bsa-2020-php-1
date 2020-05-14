@@ -20,17 +20,12 @@ class Track
     public function __construct(float $lapLength, int $lapsNumber)
     {
 
-        try {
             if ($lapLength < 0) {
                 throw new Exception('Довжина коли мє бути більше за нуль!');
             }
             if ($lapsNumber < 0) {
                 throw new Exception('Кількість кругів має бути більша за нуль!');
             }
-
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
 
         $this->lapLength = $lapLength;
         $this->lapsNumber = $lapsNumber;

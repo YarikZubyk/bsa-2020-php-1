@@ -16,17 +16,13 @@ class BooksGenerator
 
     public function __construct(int $minPagesNumber, array $libraryBooks, int $maxPrice, array $storeBooks)
     {
-        try {
+
             if ($minPagesNumber < 0) {
                 throw new Exception('Мінімальна кількість сторінок не може дорівнювати 0!');
             }
             if ($maxPrice < 0) {
                 throw new Exception('Максимальна ціна не може бути менша за нуль');
             }
-
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
 
         $this->minPagesNumber = $minPagesNumber;
         $this->libraryBooks = $libraryBooks;

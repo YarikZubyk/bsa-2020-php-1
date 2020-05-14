@@ -14,17 +14,12 @@ class Book
 
     public function __construct(string $title, int $price, int $pageNumber)
     {
-        try {
             if ($price < 0) {
                 throw new Exception('Ціна не може бути менша за нуль!');
             }
             if ($pageNumber < 0) {
                 throw new Exception('Кількість сторінок не може бути менше за нуль!');
             }
-
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
 
         $this->title = $title;
         $this->price = $price;
