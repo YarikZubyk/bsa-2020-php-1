@@ -11,7 +11,7 @@ class Track
 {
 
 
-    const sec = 3600;
+    const SEC = 3600;
     protected float $lapLength;
     protected int $lapsNumber;
     protected array $cars;
@@ -94,7 +94,7 @@ class Track
      * */
     public function totalTime($car)
     {
-        return ($this->totalLength() / $car->getSpeed()) * self::sec;
+        return ($this->totalLength() / $car->getSpeed()) * self::SEC;
     }
 
 
